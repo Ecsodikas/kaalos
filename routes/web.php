@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\KaalosEntryController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

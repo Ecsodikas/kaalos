@@ -22,7 +22,7 @@ class KaalosEntryController extends Controller
 
         // TODO: Search engine like Meili or Elastic.
         $searchResults = KaalosEntry::query()->where('url', 'like', '%'.$request->query('search_string', '').'%')->get();
-        return Inertia::render('KaalosEntries/KaalosEntryCollection', [
+        return Inertia::render('Search', [
             'kaalosEntries' => $searchResults
         ]);
     }
