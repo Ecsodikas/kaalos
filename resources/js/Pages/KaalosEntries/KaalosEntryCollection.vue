@@ -2,8 +2,13 @@
 import KaalosEntry from './KaalosEntry.vue';
 
 defineProps({
-    kaalosEntries: Array,
+    kaalosEntries: null,
 });
+
 </script>
 
-<KaalosEntry title="hi" description="ho" v-for="entry in kaalosEntries" />
+<template>
+    <div id="search-result-wrapper" class="w-full flex-row items-center">
+        <KaalosEntry v-bind:url="entry.url" v-bind:description="entry.description" v-for="entry in $page.props.kaalosEntries" />
+    </div>
+</template>

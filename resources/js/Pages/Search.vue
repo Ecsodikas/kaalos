@@ -1,5 +1,7 @@
 <script setup>
 
+import KaalosEntryCollection from "./KaalosEntries/KaalosEntryCollection.vue"
+
 defineProps({
     canLogin: {
         type: Boolean,
@@ -26,9 +28,5 @@ defineProps({
 </script>
 
 <template>
-    <div class="background-green">
-
-        Hi!
-
-    </div>
+    <KaalosEntryCollection />
 </template>

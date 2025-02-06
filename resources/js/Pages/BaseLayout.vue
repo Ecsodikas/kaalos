@@ -19,36 +19,54 @@ const form = reactive({
     search_string: null,
 })
 
-function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
-}
-
 function submit() {
     router.get('/search', form)
 }
 </script>
 
 <template>
-    <div class="bg-black">
-        <Head title="Kaalos" />
-        <nav class="flex w-full center-items">
-            <div class="w-full">
-                <img class="h-12" src="storage/assets/images/logo.png">
+    <Head title="Kaalos" />
+
+
+
+    <nav class="dark:bg-black">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://kaalos.ni-soltions.eu" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/storage/assets/images/logo_small.png" class="h-8" alt="Kaalos Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Kaalos</span>
+            </a>
+            <form @submit.prevent="submit">
+                <input v-model="form.search_string" placeholder="What are you interested in?" type="text" class="bg-white border border-white text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <button class="bg-white hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+                    <span>Search</span>
+                </button>
+            </form>
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-white md:dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" aria-current="page">Login</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-white md:dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
+                    </li>
+                </ul>
             </div>
-            <input id="search_string" v-model="form.search_string"
-                class="h-8 justify text-black background-grey" name="search_string" type="text"
-                placeholder="What are you interested in?">
-        </nav>
+        </div>
+    </nav>
+
+    <div
+        class="relative min-h-screen flex flex-col bg-black items-center justify-center selection:bg-[#FF33a1] selection:text-white">
+        <main class="w-full">
+            <slot />
+        </main>
     </div>
-
-    <main class="grow text-black bg-green">
-        <slot />
-    </main>
-
     <footer class="bg-yellow text-center text-sm text-black dark:text-white/70">
-        Currently we have {{ 0 }} passion projects in our database
     </footer>
 </template>
