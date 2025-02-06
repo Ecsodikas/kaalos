@@ -1,0 +1,12 @@
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - 7899:3306
+    environment:
+      MARIADB_DATABASE: kaalos
+      MARIADB_USER: kaalos
+      MARIADB_PASSWORD: kaalos
+      MARIADB_ROOT_PASSWORD: kaalos
