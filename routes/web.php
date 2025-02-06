@@ -14,6 +14,9 @@ Route::get('/', function () {
 
 Route::get('/search', [KaalosEntryController::class, 'search']);
 
+Route::get('/login', fn () => Inertia::render('Auth/Login'))->name('login');
+Route::get('/register', fn () => Inertia::render('Auth/Register'))->name('register');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
